@@ -18,13 +18,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run SCAP scan
-      run: |
-        oscap xccdf eval \
-          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
-          --results-arf arf.xml \
-          --report report.html \
-          --oval-results \
-          ssg-ubuntu2204-ds.xml
+      run: oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis_level1_server --results-arf arf.xml --report report.html --oval-results ssg-ubuntu2204-ds.xml 
 
     - name: Upload HTML Report
       uses: actions/upload-artifact@v4
