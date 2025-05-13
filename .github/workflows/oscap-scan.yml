@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  
+  workflow_dispatch: 
+  
+jobs:
+  build:
+    name: OpenScap Scan
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Run SCAP scan
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml
+
+    - name: Upload HTML Report
+      uses: actions/upload-artifact@v3
+      with:
+        name: scap-report
+        path: report.html
