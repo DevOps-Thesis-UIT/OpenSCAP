@@ -24,7 +24,6 @@ jobs:
           --results-arf arf.xml \
           --report report.html \
           --oval-results \
-          --debug \
           ssg-ubuntu2204-ds.xml
 
     - name: Upload HTML Report
