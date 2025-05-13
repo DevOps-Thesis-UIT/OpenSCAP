@@ -21,8 +21,10 @@ jobs:
       run: |
         oscap xccdf eval \
           --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
           --report report.html \
           --oval-results \
+          --debug \
           ssg-ubuntu2204-ds.xml
 
     - name: Upload HTML Report
