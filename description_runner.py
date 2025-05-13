@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 
-with open("remediate.html", "r", encoding="utf-8") as f:
+with open("remediated_report.html", "r", encoding="utf-8") as f:
     soup = BeautifulSoup(f, "html.parser")
 
 descriptions = {
