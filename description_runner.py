@@ -48,5 +48,5 @@ for table in tables:
                 new_td.string = desc
                 cols[result_index].insert_after(new_td)
 
-with open("testreport_modified.html", "w", encoding="utf-8") as f:
+with open("modified_report.html", "w", encoding="utf-8") as f:
     f.write(str(soup.prettify()))

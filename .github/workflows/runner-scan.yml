@@ -37,6 +37,9 @@ jobs:
           --report remediated_report.html \
           --oval-results \
           ssg-ubuntu2204-ds.xml || true 
+    
+    - name: Add Description
+      run: python3 description_runner.py
 
     - name: Upload Rescan Report
       uses: actions/upload-artifact@v4
@@ -45,3 +48,4 @@ jobs:
         path: |
           report.html
           remediated_report.html
+          modified_report.html
