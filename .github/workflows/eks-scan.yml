@@ -1,10 +1,10 @@
 name: OpenSCAP EKS CIS Benchmark
 
 on:
-  # push:
-  #   branches: [ "master" ]
-  # pull_request:
-  #   branches: [ "master" ]
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
   
   workflow_dispatch: 
 
@@ -32,10 +32,12 @@ jobs:
           --document-name "AWS-RunShellScript" \
           --comment "Run OpenSCAP" \
           --parameters 'commands=[
-            "sudo apt install -y libopenscap8",
+            "sudo apt update -y && sudo apt install -y libopenscap8 awscli",
             "oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis-node --report report.html --oval-results ssg-eks-ds.xml || true",
+            "aws s3 cp report.html s3://tuong-backend-bucket/oscap-reports/report-$(date +%s).html",
           ]' \
           --timeout-seconds 600 \
+          --region us-east-1
 
     # - name: Upload Report Artifact
     #   uses: actions/upload-artifact@v4
