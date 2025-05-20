@@ -28,7 +28,6 @@
 
 - name: Ansible Playbook for xccdf_org.ssgproject.content_profile_cis_level1_server
   hosts: all
-  become: yes 
   vars:
     var_sudo_logfile: !!str /var/log/sudo.log
     var_sudo_timestamp_timeout: !!str 15
@@ -6203,7 +6202,7 @@
         name: '{{ item }}'
         state: present
       with_items:
-      - network-manager
+      - NetworkManager
       tags:
       - DISA-STIG-UBTU-22-291015
       - NIST-800-171-3.1.16
@@ -7221,124 +7220,124 @@
       - service_autofs_disabled
 
 
-    # - name: Gather the package facts
-    #   package_facts:
-    #     manager: auto
-    #   tags:
-    #   - NIST-800-171-3.4.6
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - kernel_module_cramfs_disabled
-    #   - low_complexity
-    #   - low_severity
-    #   - medium_disruption
-    #   - reboot_required
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+      tags:
+      - NIST-800-171-3.4.6
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - kernel_module_cramfs_disabled
+      - low_complexity
+      - low_severity
+      - medium_disruption
+      - reboot_required
 
-    # - name: Ensure kernel module 'cramfs' is disabled
-    #   lineinfile:
-    #     create: true
-    #     dest: /etc/modprobe.d/cramfs.conf
-    #     regexp: install\s+cramfs
-    #     line: install cramfs /bin/false
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - NIST-800-171-3.4.6
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - kernel_module_cramfs_disabled
-    #   - low_complexity
-    #   - low_severity
-    #   - medium_disruption
-    #   - reboot_required
+    - name: Ensure kernel module 'cramfs' is disabled
+      lineinfile:
+        create: true
+        dest: /etc/modprobe.d/cramfs.conf
+        regexp: install\s+cramfs
+        line: install cramfs /bin/false
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - NIST-800-171-3.4.6
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - kernel_module_cramfs_disabled
+      - low_complexity
+      - low_severity
+      - medium_disruption
+      - reboot_required
 
-    # - name: Ensure kernel module 'cramfs' is blacklisted
-    #   lineinfile:
-    #     create: true
-    #     dest: /etc/modprobe.d/cramfs.conf
-    #     regexp: ^blacklist cramfs$
-    #     line: blacklist cramfs
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - NIST-800-171-3.4.6
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - kernel_module_cramfs_disabled
-    #   - low_complexity
-    #   - low_severity
-    #   - medium_disruption
-    #   - reboot_required
+    - name: Ensure kernel module 'cramfs' is blacklisted
+      lineinfile:
+        create: true
+        dest: /etc/modprobe.d/cramfs.conf
+        regexp: ^blacklist cramfs$
+        line: blacklist cramfs
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - NIST-800-171-3.4.6
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - kernel_module_cramfs_disabled
+      - low_complexity
+      - low_severity
+      - medium_disruption
+      - reboot_required
 
 
-    # - name: Gather the package facts
-    #   package_facts:
-    #     manager: auto
-    #   tags:
-    #   - DISA-STIG-UBTU-22-291010
-    #   - NIST-800-171-3.1.21
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-MP-7
-    #   - PCI-DSSv4-3.4
-    #   - PCI-DSSv4-3.4.2
-    #   - disable_strategy
-    #   - kernel_module_usb-storage_disabled
-    #   - low_complexity
-    #   - medium_disruption
-    #   - medium_severity
-    #   - reboot_required
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+      tags:
+      - DISA-STIG-UBTU-22-291010
+      - NIST-800-171-3.1.21
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-MP-7
+      - PCI-DSSv4-3.4
+      - PCI-DSSv4-3.4.2
+      - disable_strategy
+      - kernel_module_usb-storage_disabled
+      - low_complexity
+      - medium_disruption
+      - medium_severity
+      - reboot_required
 
-    # - name: Ensure kernel module 'usb-storage' is disabled
-    #   lineinfile:
-    #     create: true
-    #     dest: /etc/modprobe.d/usb-storage.conf
-    #     regexp: install\s+usb-storage
-    #     line: install usb-storage /bin/false
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - DISA-STIG-UBTU-22-291010
-    #   - NIST-800-171-3.1.21
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-MP-7
-    #   - PCI-DSSv4-3.4
-    #   - PCI-DSSv4-3.4.2
-    #   - disable_strategy
-    #   - kernel_module_usb-storage_disabled
-    #   - low_complexity
-    #   - medium_disruption
-    #   - medium_severity
-    #   - reboot_required
+    - name: Ensure kernel module 'usb-storage' is disabled
+      lineinfile:
+        create: true
+        dest: /etc/modprobe.d/usb-storage.conf
+        regexp: install\s+usb-storage
+        line: install usb-storage /bin/false
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - DISA-STIG-UBTU-22-291010
+      - NIST-800-171-3.1.21
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-MP-7
+      - PCI-DSSv4-3.4
+      - PCI-DSSv4-3.4.2
+      - disable_strategy
+      - kernel_module_usb-storage_disabled
+      - low_complexity
+      - medium_disruption
+      - medium_severity
+      - reboot_required
 
-    # - name: Ensure kernel module 'usb-storage' is blacklisted
-    #   lineinfile:
-    #     create: true
-    #     dest: /etc/modprobe.d/usb-storage.conf
-    #     regexp: ^blacklist usb-storage$
-    #     line: blacklist usb-storage
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - DISA-STIG-UBTU-22-291010
-    #   - NIST-800-171-3.1.21
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-MP-7
-    #   - PCI-DSSv4-3.4
-    #   - PCI-DSSv4-3.4.2
-    #   - disable_strategy
-    #   - kernel_module_usb-storage_disabled
-    #   - low_complexity
-    #   - medium_disruption
-    #   - medium_severity
-    #   - reboot_required
+    - name: Ensure kernel module 'usb-storage' is blacklisted
+      lineinfile:
+        create: true
+        dest: /etc/modprobe.d/usb-storage.conf
+        regexp: ^blacklist usb-storage$
+        line: blacklist usb-storage
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - DISA-STIG-UBTU-22-291010
+      - NIST-800-171-3.1.21
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-MP-7
+      - PCI-DSSv4-3.4
+      - PCI-DSSv4-3.4.2
+      - disable_strategy
+      - kernel_module_usb-storage_disabled
+      - low_complexity
+      - medium_disruption
+      - medium_severity
+      - reboot_required
 
 
     - name: 'Add nodev Option to /dev/shm: Check information associated to mountpoint'
@@ -10041,125 +10040,125 @@
       - unknown_severity
 
 
-    # - name: Ensure avahi-daemon is removed
-    #   package:
-    #     name: avahi-daemon
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - package_avahi_removed
+    - name: Ensure avahi-daemon is removed
+      package:
+        name: avahi-daemon
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - package_avahi_removed
 
 
-    # - name: Gather the package facts
-    #   package_facts:
-    #     manager: auto
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - service_avahi-daemon_disabled
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - service_avahi-daemon_disabled
 
-    # - name: Disable Avahi Server Software - Collect systemd Services Present in the System
-    #   ansible.builtin.command: systemctl -q list-unit-files --type service
-    #   register: service_exists
-    #   changed_when: false
-    #   failed_when: service_exists.rc not in [0, 1]
-    #   check_mode: false
-    #   when: ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
-    #     )
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - service_avahi-daemon_disabled
+    - name: Disable Avahi Server Software - Collect systemd Services Present in the System
+      ansible.builtin.command: systemctl -q list-unit-files --type service
+      register: service_exists
+      changed_when: false
+      failed_when: service_exists.rc not in [0, 1]
+      check_mode: false
+      when: ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
+        )
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - service_avahi-daemon_disabled
 
-    # - name: Disable Avahi Server Software - Ensure avahi-daemon.service is Masked
-    #   ansible.builtin.systemd:
-    #     name: avahi-daemon.service
-    #     state: stopped
-    #     enabled: false
-    #     masked: true
-    #   when:
-    #   - ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
-    #     )
-    #   - service_exists.stdout_lines is search("avahi-daemon.service", multiline=True)
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - service_avahi-daemon_disabled
+    - name: Disable Avahi Server Software - Ensure avahi-daemon.service is Masked
+      ansible.builtin.systemd:
+        name: avahi-daemon.service
+        state: stopped
+        enabled: false
+        masked: true
+      when:
+      - ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
+        )
+      - service_exists.stdout_lines is search("avahi-daemon.service", multiline=True)
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - service_avahi-daemon_disabled
 
-    # - name: Unit Socket Exists - avahi-daemon.socket
-    #   ansible.builtin.command: systemctl -q list-unit-files avahi-daemon.socket
-    #   register: socket_file_exists
-    #   changed_when: false
-    #   failed_when: socket_file_exists.rc not in [0, 1]
-    #   check_mode: false
-    #   when: ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
-    #     )
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - service_avahi-daemon_disabled
+    - name: Unit Socket Exists - avahi-daemon.socket
+      ansible.builtin.command: systemctl -q list-unit-files avahi-daemon.socket
+      register: socket_file_exists
+      changed_when: false
+      failed_when: socket_file_exists.rc not in [0, 1]
+      check_mode: false
+      when: ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
+        )
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - service_avahi-daemon_disabled
 
-    # - name: Disable Avahi Server Software - Disable Socket avahi-daemon
-    #   ansible.builtin.systemd:
-    #     name: avahi-daemon.socket
-    #     enabled: false
-    #     state: stopped
-    #     masked: true
-    #   when:
-    #   - ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
-    #     )
-    #   - socket_file_exists.stdout_lines is search("avahi-daemon.socket", multiline=True)
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - service_avahi-daemon_disabled
+    - name: Disable Avahi Server Software - Disable Socket avahi-daemon
+      ansible.builtin.systemd:
+        name: avahi-daemon.socket
+        enabled: false
+        state: stopped
+        masked: true
+      when:
+      - ( "avahi-daemon" in ansible_facts.packages and "linux-base" in ansible_facts.packages
+        )
+      - socket_file_exists.stdout_lines is search("avahi-daemon.socket", multiline=True)
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - service_avahi-daemon_disabled
 
 
     - name: Gather the package facts
@@ -11333,22 +11332,22 @@
       - package_nis_removed
 
 
-    # - name: Ensure isc-dhcp-server is removed
-    #   package:
-    #     name: isc-dhcp-server
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - package_dhcp_removed
+    - name: Ensure isc-dhcp-server is removed
+      package:
+        name: isc-dhcp-server
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - package_dhcp_removed
 
 
     - name: Ensure bind9 is removed
@@ -11367,56 +11366,56 @@
       - package_bind_removed
 
 
-    # - name: Ensure vsftpd is removed
-    #   package:
-    #     name: vsftpd
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-CM-7.1(ii)
-    #   - NIST-800-53-IA-5(1)(c)
-    #   - NIST-800-53-IA-5(1).1(v)
-    #   - disable_strategy
-    #   - high_severity
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - package_vsftpd_removed
+    - name: Ensure vsftpd is removed
+      package:
+        name: vsftpd
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-CM-7.1(ii)
+      - NIST-800-53-IA-5(1)(c)
+      - NIST-800-53-IA-5(1).1(v)
+      - disable_strategy
+      - high_severity
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - package_vsftpd_removed
 
 
-    # - name: Ensure apache2 is removed
-    #   package:
-    #     name: apache2
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - package_httpd_removed
-    #   - unknown_severity
+    - name: Ensure apache2 is removed
+      package:
+        name: apache2
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - package_httpd_removed
+      - unknown_severity
 
 
-    # - name: Ensure nginx is removed
-    #   package:
-    #     name: nginx
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - package_nginx_removed
-    #   - unknown_severity
+    - name: Ensure nginx is removed
+      package:
+        name: nginx
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - package_nginx_removed
+      - unknown_severity
 
 
     - name: Ensure cyrus-imapd is removed
@@ -11445,33 +11444,33 @@
       - unknown_severity
 
 
-    # - name: Ensure ldap-utils is removed
-    #   package:
-    #     name: ldap-utils
-    #     state: absent
-    #   tags:
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - low_severity
-    #   - no_reboot_needed
-    #   - package_openldap-clients_removed
+    - name: Ensure ldap-utils is removed
+      package:
+        name: ldap-utils
+        state: absent
+      tags:
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - low_severity
+      - no_reboot_needed
+      - package_openldap-clients_removed
 
 
-    # - name: Ensure slapd is removed
-    #   package:
-    #     name: slapd
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - low_severity
-    #   - no_reboot_needed
-    #   - package_openldap-servers_removed
+    - name: Ensure slapd is removed
+      package:
+        name: slapd
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - low_severity
+      - no_reboot_needed
+      - package_openldap-servers_removed
 
 
     - name: Ensure nfs-kernel-server is removed
@@ -11498,18 +11497,18 @@
       - no_reboot_needed
       - package_rpcbind_removed
 
-    # - name: Ensure rpcbind is removed
-    #   package:
-    #     name: rpcbind
-    #     state: absent
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - low_severity
-    #   - no_reboot_needed
-    #   - package_rpcbind_removed
+    - name: Ensure rpcbind is removed
+      package:
+        name: rpcbind
+        state: absent
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - low_severity
+      - no_reboot_needed
+      - package_rpcbind_removed
 
 
     - name: Gather the package facts
@@ -11676,17 +11675,17 @@
       - service_timesyncd_enabled
 
 
-    # - name: Ensure rsync is removed
-    #   package:
-    #     name: rsync
-    #     state: absent
-    #   tags:
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - package_rsync_removed
+    - name: Ensure rsync is removed
+      package:
+        name: rsync
+        state: absent
+      tags:
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - package_rsync_removed
 
 
     - name: Ensure rsh-client is removed
@@ -11736,73 +11735,73 @@
       - package_telnet_removed
 
 
-    # - name: Ensure cups is removed
-    #   package:
-    #     name: cups
-    #     state: absent
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - package_cups_removed
-    #   - unknown_severity
+    - name: Ensure cups is removed
+      package:
+        name: cups
+        state: absent
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - package_cups_removed
+      - unknown_severity
 
 
-    # - name: Gather the package facts
-    #   package_facts:
-    #     manager: auto
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - service_cups_disabled
-    #   - unknown_severity
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - service_cups_disabled
+      - unknown_severity
 
-    # - name: Disable the CUPS Service - Collect systemd Services Present in the System
-    #   ansible.builtin.command: systemctl -q list-unit-files --type service
-    #   register: service_exists
-    #   changed_when: false
-    #   failed_when: service_exists.rc not in [0, 1]
-    #   check_mode: false
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - service_cups_disabled
-    #   - unknown_severity
+    - name: Disable the CUPS Service - Collect systemd Services Present in the System
+      ansible.builtin.command: systemctl -q list-unit-files --type service
+      register: service_exists
+      changed_when: false
+      failed_when: service_exists.rc not in [0, 1]
+      check_mode: false
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - service_cups_disabled
+      - unknown_severity
 
-    # - name: Disable the CUPS Service - Ensure cups.service is Masked
-    #   ansible.builtin.systemd:
-    #     name: cups.service
-    #     state: stopped
-    #     enabled: false
-    #     masked: true
-    #   when:
-    #   - '"linux-base" in ansible_facts.packages'
-    #   - service_exists.stdout_lines is search("cups.service", multiline=True)
-    #   tags:
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - service_cups_disabled
-    #   - unknown_severity
+    - name: Disable the CUPS Service - Ensure cups.service is Masked
+      ansible.builtin.systemd:
+        name: cups.service
+        state: stopped
+        enabled: false
+        masked: true
+      when:
+      - '"linux-base" in ansible_facts.packages'
+      - service_exists.stdout_lines is search("cups.service", multiline=True)
+      tags:
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - service_cups_disabled
+      - unknown_severity
 
     - name: Unit Socket Exists - cups.socket
       ansible.builtin.command: systemctl -q list-unit-files cups.socket
@@ -11856,32 +11855,32 @@
       - unknown_severity
 
 
-    # - name: Ensure samba is removed
-    #   package:
-    #     name: samba
-    #     state: absent
-    #   tags:
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - package_samba_removed
-    #   - unknown_severity
+    - name: Ensure samba is removed
+      package:
+        name: samba
+        state: absent
+      tags:
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - package_samba_removed
+      - unknown_severity
 
 
-    # - name: Ensure snmp is removed
-    #   package:
-    #     name: snmp
-    #     state: absent
-    #   tags:
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.4
-    #   - disable_strategy
-    #   - low_complexity
-    #   - low_disruption
-    #   - no_reboot_needed
-    #   - package_net-snmp_removed
-    #   - unknown_severity
+    - name: Ensure snmp is removed
+      package:
+        name: snmp
+        state: absent
+      tags:
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.4
+      - disable_strategy
+      - low_complexity
+      - low_disruption
+      - no_reboot_needed
+      - package_net-snmp_removed
+      - unknown_severity
 
 
     - name: Gather the package facts
@@ -12224,14 +12223,10 @@
         lineinfile:
           path: '{{ item.path }}'
           create: false
-          regexp: '(?i)^\s*{{ "ClientAliveCountMax"| regex_escape }}\s+'
+          regexp: (?i)(?i)^\s*{{ "ClientAliveCountMax"| regex_escape }}\s+
           state: absent
-        with_items: '{{ _etc_ssh_sshd_config_d_has_parameter.files | default([]) }}'
-        when:
-          - _etc_ssh_sshd_config_d_has_parameter is defined
-          - _etc_ssh_sshd_config_d_has_parameter.files is defined
-          - _etc_ssh_sshd_config_d_has_parameter.files | length > 0
-
+        with_items: '{{ _etc_ssh_sshd_config_d_has_parameter.files }}'
+        when: _etc_ssh_sshd_config_d_has_parameter.matched
 
       - name: Insert correct line to /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
         lineinfile:
@@ -12715,119 +12710,119 @@
       - sshd_disable_rhosts
 
 
-    # - name: Gather the package facts
-    #   package_facts:
-    #     manager: auto
-    #   tags:
-    #   - CJIS-5.5.6
-    #   - NIST-800-171-3.1.1
-    #   - NIST-800-171-3.1.5
-    #   - NIST-800-53-AC-17(a)
-    #   - NIST-800-53-AC-6(2)
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-IA-2
-    #   - NIST-800-53-IA-2(5)
-    #   - PCI-DSS-Req-2.2.4
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.6
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - restrict_strategy
-    #   - sshd_disable_root_login
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+      tags:
+      - CJIS-5.5.6
+      - NIST-800-171-3.1.1
+      - NIST-800-171-3.1.5
+      - NIST-800-53-AC-17(a)
+      - NIST-800-53-AC-6(2)
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-IA-2
+      - NIST-800-53-IA-2(5)
+      - PCI-DSS-Req-2.2.4
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.6
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - restrict_strategy
+      - sshd_disable_root_login
 
-    # - name: Disable SSH Root Login
-    #   block:
+    - name: Disable SSH Root Login
+      block:
 
-    #   - name: Deduplicate values from /etc/ssh/sshd_config
-    #     lineinfile:
-    #       path: /etc/ssh/sshd_config
-    #       create: false
-    #       regexp: (?i)(?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
-    #       state: absent
+      - name: Deduplicate values from /etc/ssh/sshd_config
+        lineinfile:
+          path: /etc/ssh/sshd_config
+          create: false
+          regexp: (?i)(?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
+          state: absent
 
-    #   - name: Check if /etc/ssh/sshd_config.d exists
-    #     stat:
-    #       path: /etc/ssh/sshd_config.d
-    #     register: _etc_ssh_sshd_config_d_exists
+      - name: Check if /etc/ssh/sshd_config.d exists
+        stat:
+          path: /etc/ssh/sshd_config.d
+        register: _etc_ssh_sshd_config_d_exists
 
-    #   - name: Check if the parameter PermitRootLogin is present in /etc/ssh/sshd_config.d
-    #     find:
-    #       paths: /etc/ssh/sshd_config.d
-    #       recurse: 'yes'
-    #       follow: 'no'
-    #       contains: (?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
-    #     register: _etc_ssh_sshd_config_d_has_parameter
-    #     when: _etc_ssh_sshd_config_d_exists.stat.isdir is defined and _etc_ssh_sshd_config_d_exists.stat.isdir
+      - name: Check if the parameter PermitRootLogin is present in /etc/ssh/sshd_config.d
+        find:
+          paths: /etc/ssh/sshd_config.d
+          recurse: 'yes'
+          follow: 'no'
+          contains: (?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
+        register: _etc_ssh_sshd_config_d_has_parameter
+        when: _etc_ssh_sshd_config_d_exists.stat.isdir is defined and _etc_ssh_sshd_config_d_exists.stat.isdir
 
-    #   - name: Remove parameter from files in /etc/ssh/sshd_config.d
-    #     lineinfile:
-    #       path: '{{ item.path }}'
-    #       create: false
-    #       regexp: (?i)(?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
-    #       state: absent
-    #     with_items: '{{ _etc_ssh_sshd_config_d_has_parameter.files }}'
-    #     when: _etc_ssh_sshd_config_d_has_parameter.matched
+      - name: Remove parameter from files in /etc/ssh/sshd_config.d
+        lineinfile:
+          path: '{{ item.path }}'
+          create: false
+          regexp: (?i)(?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
+          state: absent
+        with_items: '{{ _etc_ssh_sshd_config_d_has_parameter.files }}'
+        when: _etc_ssh_sshd_config_d_has_parameter.matched
 
-    #   - name: Insert correct line to /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
-    #     lineinfile:
-    #       path: /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
-    #       create: true
-    #       regexp: (?i)(?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
-    #       line: PermitRootLogin no
-    #       state: present
-    #       insertbefore: BOF
-    #       validate: /usr/sbin/sshd -t -f %s
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - CJIS-5.5.6
-    #   - NIST-800-171-3.1.1
-    #   - NIST-800-171-3.1.5
-    #   - NIST-800-53-AC-17(a)
-    #   - NIST-800-53-AC-6(2)
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-IA-2
-    #   - NIST-800-53-IA-2(5)
-    #   - PCI-DSS-Req-2.2.4
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.6
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - restrict_strategy
-    #   - sshd_disable_root_login
+      - name: Insert correct line to /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
+        lineinfile:
+          path: /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
+          create: true
+          regexp: (?i)(?i)^\s*{{ "PermitRootLogin"| regex_escape }}\s+
+          line: PermitRootLogin no
+          state: present
+          insertbefore: BOF
+          validate: /usr/sbin/sshd -t -f %s
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - CJIS-5.5.6
+      - NIST-800-171-3.1.1
+      - NIST-800-171-3.1.5
+      - NIST-800-53-AC-17(a)
+      - NIST-800-53-AC-6(2)
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-IA-2
+      - NIST-800-53-IA-2(5)
+      - PCI-DSS-Req-2.2.4
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.6
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - restrict_strategy
+      - sshd_disable_root_login
 
-    # - name: Disable SSH Root Login - set file mode for /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
-    #   ansible.builtin.file:
-    #     path: /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
-    #     mode: '0600'
-    #   when: '"linux-base" in ansible_facts.packages'
-    #   tags:
-    #   - CJIS-5.5.6
-    #   - NIST-800-171-3.1.1
-    #   - NIST-800-171-3.1.5
-    #   - NIST-800-53-AC-17(a)
-    #   - NIST-800-53-AC-6(2)
-    #   - NIST-800-53-CM-6(a)
-    #   - NIST-800-53-CM-7(a)
-    #   - NIST-800-53-CM-7(b)
-    #   - NIST-800-53-IA-2
-    #   - NIST-800-53-IA-2(5)
-    #   - PCI-DSS-Req-2.2.4
-    #   - PCI-DSSv4-2.2
-    #   - PCI-DSSv4-2.2.6
-    #   - low_complexity
-    #   - low_disruption
-    #   - medium_severity
-    #   - no_reboot_needed
-    #   - restrict_strategy
-    #   - sshd_disable_root_login
+    - name: Disable SSH Root Login - set file mode for /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
+      ansible.builtin.file:
+        path: /etc/ssh/sshd_config.d/00-complianceascode-hardening.conf
+        mode: '0600'
+      when: '"linux-base" in ansible_facts.packages'
+      tags:
+      - CJIS-5.5.6
+      - NIST-800-171-3.1.1
+      - NIST-800-171-3.1.5
+      - NIST-800-53-AC-17(a)
+      - NIST-800-53-AC-6(2)
+      - NIST-800-53-CM-6(a)
+      - NIST-800-53-CM-7(a)
+      - NIST-800-53-CM-7(b)
+      - NIST-800-53-IA-2
+      - NIST-800-53-IA-2(5)
+      - PCI-DSS-Req-2.2.4
+      - PCI-DSSv4-2.2
+      - PCI-DSSv4-2.2.6
+      - low_complexity
+      - low_disruption
+      - medium_severity
+      - no_reboot_needed
+      - restrict_strategy
+      - sshd_disable_root_login
 
 
     - name: Gather the package facts
