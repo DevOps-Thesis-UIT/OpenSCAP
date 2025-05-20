@@ -27,7 +27,7 @@ jobs:
           ssg-ubuntu2204-ds.xml || true 
 
     - name: Remediate Runner
-      run: sudo ansible-playbook -i "localhost," -c local ssg/ansible/ubuntu2204-playbook-cis_level1_server.yml --skip-tags=avahi,demon,cups,isc-dhcp,ldap,rsync,samba,snmp,vsftpd,httpd,nginx,bind,cramfs,usb,sshd_disable_empty_passwords,accounts_user_interactive_home_directory_exists,file_groupownership_home_directories
+      run: ansible-playbook -i hosts.ini ubuntu2204-playbook-cis_level1_server.yml --skip-tags=avahi,demon,cups,isc-dhcp,ldap,rsync,samba,snmp,vsftpd,httpd,nginx,bind,cramfs,usb,sshd_disable_empty_passwords,accounts_user_interactive_home_directory_exists,file_groupownership_home_directories
 
     - name: Rescan SCAP
       run: |
