@@ -28,6 +28,7 @@
 
 - name: Ansible Playbook for xccdf_org.ssgproject.content_profile_cis_level1_server
   hosts: all
+  become: yes
   vars:
     var_sudo_logfile: !!str /var/log/sudo.log
     var_sudo_timestamp_timeout: !!str 15
