@@ -1,4 +1,4 @@
-name: OpenSCAP CIS Benchmark
+name: OpenSCAP Runner CIS Benchmark
 
 on:
   # push:

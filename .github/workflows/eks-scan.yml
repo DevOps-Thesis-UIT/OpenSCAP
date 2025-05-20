@@ -1,4 +1,4 @@
-name: OpenSCAP CIS Benchmark
+name: OpenSCAP EKS CIS Benchmark
 
 on:
   # push:
