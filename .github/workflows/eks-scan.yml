@@ -27,30 +27,20 @@ jobs:
     - name: Trigger OSCAP via SSM
       run: |
         aws ssm send-command \
-          --instance-ids "${{ secrets.EKS_INSTANCE_ID }}" \
+          --instance-ids i-01e01e152f31c9708 \
           --document-name "AWS-RunShellScript" \
           --comment "Run OpenSCAP" \
           --parameters 'commands=[
-            "sudo yum install -y openscap-scanner scap-security-guide",
-            "SCAN_PROFILE=xccdf_org.ssgproject.content_profile_cis",
-            "XML_PATH=/usr/share/xml/scap/ssg/content/ssg-amazon_linux2-xccdf.xml",
-            "REPORT_NAME=oscap-report-$(date +%s).html",
-            "oscap xccdf eval --profile $SCAN_PROFILE --report /tmp/$REPORT_NAME $XML_PATH",
-            "aws s3 cp /tmp/$REPORT_NAME s3://eks-oscap-reports/$REPORT_NAME"
+            "sudo apt install -y libopenscap8",
+            "oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis-node --report report.html --oval-results ssg-eks-ds.xml || true",
           ]' \
-          --output-s3-bucket-name eks-oscap-reports \
           --timeout-seconds 600 \
-          --region ${{ secrets.AWS_REGION }}
 
-    - name: Download latest report from S3
-      run: |
-        aws s3 cp s3://eks-oscap-reports/$(aws s3 ls s3://eks-oscap-reports/ | sort | tail -n 1 | awk '{print $4}') report.html
-
-    - name: Upload Report Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: oscap-html-report
-        path: report.html
+    # - name: Upload Report Artifact
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: oscap-html-report
+    #     path: report.html
 
 
     

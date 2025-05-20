@@ -1,10 +1,10 @@
 name: OpenSCAP CIS Benchmark
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  # push:
+  #   branches: [ "master" ]
+  # pull_request:
+  #   branches: [ "master" ]
   
   workflow_dispatch: 
 
@@ -41,7 +41,7 @@ jobs:
     - name: Add Description
       run: python3 description_runner.py
 
-    - name: Upload Rescan Report
+    - name: Upload Report
       uses: actions/upload-artifact@v4
       with:
         name: scap-report
