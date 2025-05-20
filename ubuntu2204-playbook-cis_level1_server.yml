@@ -6203,7 +6203,7 @@
         name: '{{ item }}'
         state: present
       with_items:
-      - NetworkManager
+      - network-manager
       tags:
       - DISA-STIG-UBTU-22-291015
       - NIST-800-171-3.1.16
@@ -6226,7 +6226,7 @@
     - name: NetworkManager Deactivate Wireless Network Interfaces
       command: nmcli radio wifi off
       when:
-      - '''NetworkManager'' in ansible_facts.packages'
+      - '''network-manager'' in ansible_facts.packages'
       - ansible_facts.services['NetworkManager.service'].state == 'running'
       tags:
       - DISA-STIG-UBTU-22-291015
