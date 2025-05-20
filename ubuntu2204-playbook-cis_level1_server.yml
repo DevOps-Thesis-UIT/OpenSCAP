@@ -6226,7 +6226,7 @@
     - name: NetworkManager Deactivate Wireless Network Interfaces
       command: nmcli radio wifi off
       when:
-      - '''network-manager'' in ansible_facts.packages'
+      - '''NetworkManager'' in ansible_facts.packages'
       - ansible_facts.services['NetworkManager.service'].state == 'running'
       tags:
       - DISA-STIG-UBTU-22-291015
