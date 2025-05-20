@@ -12,6 +12,7 @@ jobs:
   runner-oscap-scan:
     name: OpenScap Scan
     runs-on: self-hosted
+    timeout-minutes: 180
 
     steps:
     - name: Checkout Source
