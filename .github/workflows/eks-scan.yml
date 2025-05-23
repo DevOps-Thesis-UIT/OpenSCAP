@@ -28,14 +28,11 @@ jobs:
     - name: Trigger OSCAP via SSM
       run: |
         aws ssm send-command \
-          --instance-ids i-005d29cf63b570ae0 \
+          --instance-ids i-0ae176e853fc76fcf \
           --document-name "AWS-RunShellScript" \
           --comment "Run OpenSCAP" \
           --parameters 'commands=[
             "sudo yum install -y openscap-scanner scap-security-guide awscli",
-            "aws s3 cp s3://tuong-backend-bucket/oscap/ssg-alinux2-ds.xml ./ssg-alinux2-ds.xml",
-            "oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis-node --report report.html --oval-results ssg-eks-ds.xml || true",
-            "aws s3 cp report.html s3://tuong-backend-bucket/oscap-reports/report-$(date +%s).html"
           ]' \
           --timeout-seconds 600 \
           --region us-east-1
@@ -46,5 +43,8 @@ jobs:
     #     name: oscap-html-report
     #     path: report.html
 
+# "aws s3 cp s3://tuong-backend-bucket/oscap/ssg-alinux2-ds.xml ./ssg-alinux2-ds.xml",
+#             "oscap xccdf eval --profile xccdf_org.ssgproject.content_profile_cis-node --report report.html --oval-results ssg-eks-ds.xml || true",
+#             "aws s3 cp report.html s3://tuong-backend-bucket/oscap-reports/report-$(date +%s).html"
 
     
