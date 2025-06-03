@@ -46,7 +46,7 @@ jobs:
     - name: Upload Report
       uses: actions/upload-artifact@v4
       with:
-        name: scap-report
+        name: scap-report-runner
         path: |
           report.html
           remediated_report.html
@@ -88,7 +88,7 @@ jobs:
     - name: Upload Report
       uses: actions/upload-artifact@v4
       with:
-        name: scap-report
+        name: scap-report-mongo
         path: |
           report.html
           remediated_report.html
@@ -130,7 +130,7 @@ jobs:
     - name: Upload Report
       uses: actions/upload-artifact@v4
       with:
-        name: scap-report
+        name: scap-report-sonar
         path: |
           report.html
           remediated_report.html
@@ -172,7 +172,7 @@ jobs:
     - name: Upload Report
       uses: actions/upload-artifact@v4
       with:
-        name: scap-report
+        name: scap-report-vault
         path: |
           report.html
           remediated_report.html
