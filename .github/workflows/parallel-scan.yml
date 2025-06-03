@@ -12,7 +12,7 @@ on:
 jobs:
   runner-oscap-scan:
     name: Runner OpenScap Scan
-    runs-on: self-hosted
+    runs-on: [self-hosted, runner]
     timeout-minutes: 180
 
     steps:
@@ -54,7 +54,7 @@ jobs:
   
   mongo-oscap-scan:
     name: MongoDB Server OpenScap Scan
-    runs-on: self-hosted
+    runs-on: [self-hosted, mongo]
     timeout-minutes: 180
 
     steps:
@@ -96,7 +96,7 @@ jobs:
 
   sonar-oscap-scan:
     name: SonarQube Server OpenScap Scan
-    runs-on: self-hosted
+    runs-on: [self-hosted, sonar]
     timeout-minutes: 180
 
     steps:
@@ -138,7 +138,7 @@ jobs:
   
   vault-oscap-scan:
     name: Vault Server OpenScap Scan
-    runs-on: self-hosted
+    runs-on: [self-hosted, vault]
     timeout-minutes: 180
 
     steps:
