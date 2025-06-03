@@ -1,0 +1,179 @@
+name: OpenSCAP CIS Benchmark
+
+on:
+  # push:
+  #   branches: [ "master" ]
+  # pull_request:
+  #   branches: [ "master" ]
+  schedule:
+    - cron: 0 0 * * 1
+  workflow_dispatch: 
+
+jobs:
+  runner-oscap-scan:
+    name: Runner OpenScap Scan
+    runs-on: self-hosted
+    timeout-minutes: 180
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Run SCAP scan
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+
+    - name: Remediate Runner
+      run: ansible-playbook -i hosts.ini ubuntu2204-playbook-cis_level1_server.yml --skip-tags=avahi,demon,cups,isc-dhcp,ldap,rsync,samba,snmp,vsftpd,httpd,nginx,bind,cramfs,usb,sshd_disable_empty_passwords,accounts_user_interactive_home_directory_exists,file_groupownership_home_directories
+
+    - name: Rescan SCAP
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report remediated_report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+    
+    - name: Add Description
+      run: python3 description_runner.py
+
+    - name: Upload Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: scap-report
+        path: |
+          report.html
+          remediated_report.html
+          modified_report.html
+  
+  mongo-oscap-scan:
+    name: MongoDB Server OpenScap Scan
+    runs-on: self-hosted
+    timeout-minutes: 180
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Run SCAP scan
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+
+    - name: Remediate Runner
+      run: ansible-playbook -i hosts.ini ubuntu2204-playbook-cis_level1_server.yml 
+  
+    - name: Rescan SCAP
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report remediated_report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+    
+    - name: Add Description
+      run: python3 description_runner.py
+
+    - name: Upload Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: scap-report
+        path: |
+          report.html
+          remediated_report.html
+          modified_report.html
+
+  sonar-oscap-scan:
+    name: SonarQube Server OpenScap Scan
+    runs-on: self-hosted
+    timeout-minutes: 180
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Run SCAP scan
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+
+    - name: Remediate Runner
+      run: ansible-playbook -i hosts.ini ubuntu2204-playbook-cis_level1_server.yml 
+  
+    - name: Rescan SCAP
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report remediated_report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+    
+    - name: Add Description
+      run: python3 description_runner.py
+
+    - name: Upload Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: scap-report
+        path: |
+          report.html
+          remediated_report.html
+          modified_report.html
+  
+  vault-oscap-scan:
+    name: Vault Server OpenScap Scan
+    runs-on: self-hosted
+    timeout-minutes: 180
+
+    steps:
+    - name: Checkout Source
+      uses: actions/checkout@v4
+
+    - name: Run SCAP scan
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+
+    - name: Remediate Runner
+      run: ansible-playbook -i hosts.ini ubuntu2204-playbook-cis_level1_server.yml 
+  
+    - name: Rescan SCAP
+      run: |
+        oscap xccdf eval \
+          --profile xccdf_org.ssgproject.content_profile_cis_level1_server \
+          --results-arf arf.xml \
+          --report remediated_report.html \
+          --oval-results \
+          ssg-ubuntu2204-ds.xml || true 
+    
+    - name: Add Description
+      run: python3 description_runner.py
+
+    - name: Upload Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: scap-report
+        path: |
+          report.html
+          remediated_report.html
+          modified_report.html
