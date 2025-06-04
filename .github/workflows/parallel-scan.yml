@@ -184,11 +184,8 @@ jobs:
     timeout-minutes: 180
 
     steps:
-    - name: Git clone
-      run: git clone https://github.com/DevOps-Thesis-UIT/OpenSCAP.git
-
-    - name: CD
-      run: cd OpenSCAP
+    - name: Checkout Source
+      uses: actions/checkout@v4
 
     - name: Run SCAP scan
       run: |
