@@ -188,7 +188,7 @@ jobs:
       uses: git clone https://github.com/DevOps-Thesis-UIT/OpenSCAP.git
 
     - name: CD
-      uses: cd OpenSCAP
+      uses: cd OpenSCAP/
 
     - name: Run SCAP scan
       run: |
