@@ -184,9 +184,6 @@ jobs:
     timeout-minutes: 180
 
     steps:
-    - name: Git clone
-      run: git clone https://github.com/DevOps-Thesis-UIT/OpenSCAP.git
-
     - name: pull ssg-eks-ds.xml
       run: aws s3 cp s3://tuong-oscap/ssg-eks-ds.xml ./ssg-eks-ds.xml
 
