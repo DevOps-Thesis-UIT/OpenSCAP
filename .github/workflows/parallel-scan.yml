@@ -185,10 +185,10 @@ jobs:
 
     steps:
     - name: Git clone
-      uses: git clone https://github.com/DevOps-Thesis-UIT/OpenSCAP.git
+      run: git clone https://github.com/DevOps-Thesis-UIT/OpenSCAP.git
 
     - name: CD
-      uses: cd OpenSCAP/
+      run: cd OpenSCAP
 
     - name: Run SCAP scan
       run: |
