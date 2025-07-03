@@ -178,29 +178,3 @@ jobs:
           remediated_report.html
           modified_report.html
 
-  eks-node-oscap-scan:
-    name: EKS Node OpenScap Scan
-    runs-on: [self-hosted, eks]
-    timeout-minutes: 180
-
-    steps:
-    - name: pull ssg-eks-ds.xml
-      run: aws s3 cp s3://tuong-oscap/ssg-eks-ds.xml ./ssg-eks-ds.xml
-
-    - name: Run SCAP scan
-      run: |
-        oscap xccdf eval \
-          --profile xccdf_org.ssgproject.content_profile_cis-node \
-          --results-arf arf.xml \
-          --report report.html \
-          --oval-results \
-          ssg-eks-ds.xml || true 
-
-    - name: Upload Report
-      env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-          AWS_REGION: us-east-1
-      run: aws s3 cp report.html s3://tuong-oscap/report-$(date +%s).html
-
